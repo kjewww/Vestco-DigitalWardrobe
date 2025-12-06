@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1B1F"
+    tools:context=".ui.chat.ChatFragment">
+
+    <!-- Chat RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_chat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/shortcut_container"
+        android:padding="8dp"
+        android:background="#242424"
+        android:clipToPadding="false" />
+
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:indeterminateTint="#4CAF50" />
+
+    <!-- Shortcut Chips Container -->
+    <HorizontalScrollView
+        android:id="@+id/shortcut_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/input_container"
+        android:background="#2C2C2E"
+        android:paddingVertical="6dp"
+        android:scrollbars="none">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chip_shortcuts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            app:singleLine="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_my_clothes"
+                style="@style/Widget.MaterialComponents.Chip.Action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="👕 Baju yang kumiliki"
+                android:textColor="#FFFFFF"
+                app:chipBackgroundColor="#3C3C3C"
+                app:chipStrokeWidth="0dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_my_outfits"
+                style="@style/Widget.MaterialComponents.Chip.Action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="👔 Outfit yang kumiliki"
+                android:textColor="#FFFFFF"
+                app:chipBackgroundColor="#3C3C3C"
+                app:chipStrokeWidth="0dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_create_outfit"
+                style="@style/Widget.MaterialComponents.Chip.Action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="✨ Buatkan outfit"
+                android:textColor="#FFFFFF"
+                app:chipBackgroundColor="#3C3C3C"
+                app:chipStrokeWidth="0dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_fashion_tips"
+                style="@style/Widget.MaterialComponents.Chip.Action"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="💡 Tips fashion"
+                android:textColor="#FFFFFF"
+                app:chipBackgroundColor="#3C3C3C"
+                app:chipStrokeWidth="0dp" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+    </HorizontalScrollView>
+
+    <!-- Input Container -->
+    <LinearLayout
+        android:id="@+id/input_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/sponsor_container"
+        android:orientation="horizontal"
+        android:paddingHorizontal="10dp"
+        android:background="#2C2C2E"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/et_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bg_chat_input"
+            android:hint="Ketik pesan..."
+            android:textColorHint="#A0A0A0"
+            android:textColor="@android:color/white"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:maxLines="4" />
+
+        <ImageButton
+            android:id="@+id/btn_send"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_send_arrow"
+            android:background="@android:color/transparent"
+            android:contentDescription="Send" />
+    </LinearLayout>
+
+    <!-- Sponsor Container -->
+
+    <LinearLayout
+        android:id="@+id/sponsor_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:background="#2C2C2E"
+        android:gravity="center_vertical">
+
+    <TextView
+        android:id="@+id/AI_Identity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Powered by SENOPATI AI"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:textSize="12sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

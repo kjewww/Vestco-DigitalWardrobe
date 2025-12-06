@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.example.wardrobedigital.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_createOutfitFragment"
+            app:destination="@id/createOutfitFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_wardrobe"
+        android:name="com.example.wardrobedigital.WardrobeFragment"
+        android:label="fragment_wardrobe"
+        tools:layout="@layout/fragment_wardrobe" >
+        <action
+            android:id="@+id/action_wardrobeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.wardrobedigital.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="clothingItem"
+            app:argType="com.example.wardrobedigital.ClothingItem" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/imageFullscreenFragment"
+        android:name="com.example.wardrobedigital.ImageFullscreenFragment"
+        android:label="Fullscreen Image"
+        tools:layout="@layout/fragment_image_fullscreen" />
+
+    <!-- ✅ OUTFIT FRAGMENT -->
+    <fragment
+        android:id="@+id/nav_outfit"
+        android:name="com.example.wardrobedigital.OutfitFragment"
+        android:label="fragment_outfit"
+        tools:layout="@layout/fragment_outfit" >
+        <!-- ✅ Action ke CreateOutfitFragment -->
+        <action
+            android:id="@+id/action_nav_outfit_to_createOutfitFragment"
+            app:destination="@id/createOutfitFragment" />
+        <!-- ✅ Action ke OutfitDetailFragment -->
+        <action
+            android:id="@+id/action_nav_outfit_to_outfitDetailFragment"
+            app:destination="@id/outfitDetailFragment" />
+    </fragment>
+
+    <!-- ✅ CREATE OUTFIT FRAGMENT -->
+    <fragment
+        android:id="@+id/createOutfitFragment"
+        android:name="com.example.wardrobedigital.CreateOutfitFragment"
+        android:label="Buat Outfit"
+        tools:layout="@layout/fragment_create_outfit" />
+
+    <!-- ✅ OUTFIT DETAIL FRAGMENT -->
+    <fragment
+        android:id="@+id/outfitDetailFragment"
+        android:name="com.example.wardrobedigital.OutfitDetailFragment"
+        android:label="Detail Outfit"
+        tools:layout="@layout/fragment_outfit_detail" >
+        <argument
+            android:name="outfit"
+            app:argType="com.example.wardrobedigital.Outfit" />
+        <!-- ✅ Bisa navigasi ke DetailFragment (item pakaian) -->
+        <action
+            android:id="@+id/action_outfitDetailFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_chat"
+        android:name="com.example.wardrobedigital.ChatFragment"
+        android:label="fragment_chat"
+        tools:layout="@layout/fragment_chat" />
+
+    <action
+        android:id="@+id/action_detailFragment_to_imageFullscreenFragment"
+        app:destination="@id/imageFullscreenFragment"
+        app:enterAnim="@android:anim/fade_in"
+        app:exitAnim="@android:anim/fade_out"
+        app:popEnterAnim="@android:anim/fade_in"
+        app:popExitAnim="@android:anim/fade_out" />
+
+</navigation>

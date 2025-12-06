@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="24dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nama Pakaian (Wajib)">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_name"
+                android:inputType="text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <!-- 1. KATEGORI (WAJIB) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kategori (Wajib)"
+            android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+
+
+        <RadioGroup
+            android:id="@+id/rg_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/rb_atasan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Atasan" />
+
+            <RadioGroup
+                android:id="@+id/rg_subcategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp"
+                android:visibility="gone">
+
+                <RadioButton
+                    android:id="@+id/rb_outer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Outer" />
+
+                <RadioButton
+                    android:id="@+id/rb_inner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Inner" />
+            </RadioGroup>
+
+            <RadioButton
+                android:id="@+id/rb_bawahan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bawahan" />
+
+            <RadioButton
+                android:id="@+id/rb_sepatu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sepatu" />
+
+            <RadioButton
+                android:id="@+id/rb_aksesoris"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aksesoris" />
+        </RadioGroup>
+
+
+
+
+        <!-- 2. CUACA (OPSIONAL) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Cuaca"
+            android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_weather"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:selectionRequired="false"
+            app:singleSelection="false">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_panas"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Panas" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_sejuk"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkable="true"
+                android:text="Sejuk" />
+        </com.google.android.material.chip.ChipGroup>
+
+
+        <!-- 3. MOTIF (WAJIB) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Motif (Wajib)"
+            android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+        <RadioGroup
+            android:id="@+id/rg_pattern"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rb_bergambar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:text="Bergambar" />
+
+            <RadioButton
+                android:id="@+id/rb_polos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Polos" />
+        </RadioGroup>
+
+        <!-- 4. WARNA (PILIHAN GANDA) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Warna"
+            android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_colors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:selectionRequired="false"
+            app:singleSelection="false">
+
+            <!-- Contoh Chip dengan ikon warna -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_merah"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Merah"
+                android:checkable="true"
+                app:chipIcon="@android:drawable/ic_dialog_info"
+                app:chipIconTint="#FF0000" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_biru"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Biru"
+                android:checkable="true"
+                app:chipIcon="@android:drawable/ic_dialog_info"
+                app:chipIconTint="#0000FF" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_hijau"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hijau"
+                android:checkable="true"
+                app:chipIcon="@android:drawable/ic_dialog_info"
+                app:chipIconTint="#12B312" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_hitam"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hitam"
+                android:checkable="true"
+                app:chipIcon="@android:drawable/ic_dialog_info"
+                app:chipIconTint="#000000" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_cokelat"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cokelat"
+                android:checkable="true"
+                app:chipIcon="@android:drawable/ic_dialog_info"
+                app:chipIconTint="#833C03" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_abu"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Abu-abu"
+                android:checkable="true"
+                app:chipIcon="@android:drawable/ic_dialog_info"
+                app:chipIconTint="#6F6F6F" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_kuning"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kuning"
+                android:checkable="true"
+                app:chipIcon="@android:drawable/ic_dialog_info"
+                app:chipIconTint="#FAD90F" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_putih"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Putih"
+                android:checkable="true"
+                app:chipIcon="@android:drawable/ic_dialog_info"
+                app:chipIconTint="#FFFFFF" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_ungu"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ungu"
+                android:checkable="true"
+                app:chipIcon="@android:drawable/ic_dialog_info"
+                app:chipIconTint="#483587" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_pink"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pink"
+                android:checkable="true"
+                app:chipIcon="@android:drawable/ic_dialog_info"
+                app:chipIconTint="#EB80EA" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip_krem"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cream"
+                android:checkable="true"
+                app:chipIcon="@android:drawable/ic_dialog_info"
+                app:chipIconTint="#F8DCB4" />
+
+            <!-- Tambahkan warna lain sesuai kebutuhan -->
+
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+
+        <!-- 5. NOTES (OPSIONAL) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Notes"
+            android:textAppearance="?attr/textAppearanceTitleMedium" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="200">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_notes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:hint="Catatan tambahan..."
+                android:lines="4"
+                android:maxLength="200" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+</ScrollView>
