@@ -6,8 +6,9 @@
 <!--    </style>-->
 
     <!-- res/values-night/themes.xml -->
-    <style name="Base.Theme.WardrobeDigital" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.WardrobeDigital" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
+        <item name="android:windowBackground">@color/light_goldenrod_yellow</item>
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
 

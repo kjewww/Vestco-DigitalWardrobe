@@ -1,8 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
-    id("androidx.navigation.safeargs") // Diperbarui dari file root build.gradle.kts Anda
+    id("androidx.navigation.safeargs")
 }
-
 
 android {
     namespace = "com.example.wardrobedigital"
@@ -40,6 +39,9 @@ android {
 }
 
 dependencies {
+
+    // Splash Screen API
+    implementation(libs.androidx.core.splashscreen)
 
     // Retrofit & OkHttp untuk komunikasi API
     implementation("com.squareup.retrofit2:retrofit:2.9.0")

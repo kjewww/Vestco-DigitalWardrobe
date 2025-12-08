@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#1C1B1F"
+    android:background="@color/colorAppBackground"
     tools:context=".ui.wardrobe.WardrobeFragment">
 
     <!-- Header -->
@@ -18,7 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Wardrobe"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorTextPrimary"
             android:textSize="24sp"
             android:textStyle="bold"
             android:layout_centerVertical="true"
@@ -28,6 +28,7 @@
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/ic_filter"
+            app:tint="@color/colorTextPrimary"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"/>
     </RelativeLayout>
@@ -44,7 +45,7 @@
         android:focusable="true"
         android:foreground="?android:attr/selectableItemBackground"
         app:cardCornerRadius="16dp"
-        app:cardBackgroundColor="#3C3C3C">
+        app:cardBackgroundColor="@color/colorCard">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,14 +57,14 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:src="@drawable/ic_add_circle"
-                app:tint="@color/white" />
+                app:tint="@color/colorTextPrimary" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="Add Item"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/colorTextPrimary" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 

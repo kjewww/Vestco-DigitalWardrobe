@@ -1,5 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="ic_launcher_background">#FFFFFF</color>
+
+    <!-- Palette Warna Mode Terang -->
+    <color name="colorAppBackground">#FAFAD2</color> <!-- light_goldenrod_yellow -->
+    <color name="colorNavbar">#F8DE7E</color>      <!-- jasmine -->
+    <color name="colorCard">#FFFFFF</color>
+    <color name="colorEditTextBackground">#FFFFFF</color> <!-- Putih untuk EditText di mode terang -->
+    <color name="colorTextPrimary">#000000</color>
+    <color name="colorTextSecondary">#808080</color>
+
+    <!-- Warna Chat -->
+    <color name="colorChatBubbleUser">#DFF0D8</color> <!-- light_green -->
+    <color name="colorChatBubbleAi">#FFFFFF</color>
+    <color name="colorChatInputArea">#F5C857</color>
+
+    <!-- Warna Bottom Nav -->
+    <color name="bottomNavIndicatorColor">#FFFFFF</color>
+    <color name="bottomNavItemColor">#000000</color>
+
+    <!-- Warna untuk teks di atas gambar -->
+    <color name="colorImageScrim">#B3FFFFFF</color> <!-- Semi-transparent white -->
+    <color name="colorTextOnImage">#000000</color>   <!-- Black -->
+
+    <!-- Warna-warna lama, bisa dihapus nanti -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="ivory">#FFFFF0</color>
+    <color name="alice_blue">#F0F8FF</color>
+    <color name="light_sky_blue">#93BEFF</color>
+    <color name="light_yellow">#FFFD8B</color>
+    <color name="khaki_web">#CEC68C</color>
+    <color name="jasmine">#F8DE7E</color>
+    <color name="light_goldenrod_yellow">#FAFAD2</color>
+    <color name="light_green">#DFF0D8</color>
 </resources>

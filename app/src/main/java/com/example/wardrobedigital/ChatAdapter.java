@@ -71,16 +71,14 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.MessageViewHol
             LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) messageContainer.getLayoutParams();
 
             if (message.isUser()) {
-                // User message - align right, blue background
+                // User message - align right
                 params.gravity = Gravity.END;
                 messageContainer.setBackgroundResource(R.drawable.bg_message_user);
-                tvMessage.setTextColor(0xFFFFFFFF); // White text
                 tvSponsor.setVisibility(View.GONE);
             } else {
-                // AI message - align left, gray background
+                // AI message - align left
                 params.gravity = Gravity.START;
                 messageContainer.setBackgroundResource(R.drawable.bg_message_ai);
-                tvMessage.setTextColor(0xFFFFFFFF);
                 tvSponsor.setVisibility(View.VISIBLE);
             }
 

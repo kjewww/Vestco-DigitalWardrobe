@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">WardrobeDigital</string>
+    <string name="app_name">Vestco-Wardrobe Digital</string>
     <string-array name="clothing_categories">
         <item>Atasan</item>
         <item>Bawahan</item>

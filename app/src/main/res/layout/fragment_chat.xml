@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1C1B1F"
+    android:background="@color/colorAppBackground"
     tools:context=".ui.chat.ChatFragment">
 
     <!-- Chat RecyclerView -->
@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         android:layout_above="@id/shortcut_container"
         android:padding="8dp"
-        android:background="#242424"
         android:clipToPadding="false" />
 
     <!-- Progress Bar -->
@@ -32,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/input_container"
-        android:background="#2C2C2E"
+        android:background="@color/colorChatInputArea"
         android:paddingVertical="6dp"
         android:scrollbars="none">
 
@@ -49,8 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="👕 Baju yang kumiliki"
-                android:textColor="#FFFFFF"
-                app:chipBackgroundColor="#3C3C3C"
+                android:textColor="@color/colorTextPrimary"
+                app:chipBackgroundColor="@color/colorEditTextBackground"
                 app:chipStrokeWidth="0dp" />
 
             <com.google.android.material.chip.Chip
@@ -59,8 +58,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="👔 Outfit yang kumiliki"
-                android:textColor="#FFFFFF"
-                app:chipBackgroundColor="#3C3C3C"
+                android:textColor="@color/colorTextPrimary"
+                app:chipBackgroundColor="@color/colorEditTextBackground"
                 app:chipStrokeWidth="0dp" />
 
             <com.google.android.material.chip.Chip
@@ -69,8 +68,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="✨ Buatkan outfit"
-                android:textColor="#FFFFFF"
-                app:chipBackgroundColor="#3C3C3C"
+                android:textColor="@color/colorTextPrimary"
+                app:chipBackgroundColor="@color/colorEditTextBackground"
                 app:chipStrokeWidth="0dp" />
 
             <com.google.android.material.chip.Chip
@@ -79,8 +78,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="💡 Tips fashion"
-                android:textColor="#FFFFFF"
-                app:chipBackgroundColor="#3C3C3C"
+                android:textColor="@color/colorTextPrimary"
+                app:chipBackgroundColor="@color/colorEditTextBackground"
                 app:chipStrokeWidth="0dp" />
 
         </com.google.android.material.chip.ChipGroup>
@@ -92,10 +91,10 @@
         android:id="@+id/input_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/sponsor_container"
+        android:layout_above="@id/sponsor_container"
+        android:background="@color/colorChatInputArea"
         android:orientation="horizontal"
         android:paddingHorizontal="10dp"
-        android:background="#2C2C2E"
         android:gravity="center_vertical">
 
         <EditText
@@ -105,8 +104,8 @@
             android:layout_weight="1"
             android:background="@drawable/bg_chat_input"
             android:hint="Ketik pesan..."
-            android:textColorHint="#A0A0A0"
-            android:textColor="@android:color/white"
+            android:textColorHint="@color/colorTextSecondary"
+            android:textColor="@color/colorTextPrimary"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:paddingTop="12dp"
@@ -119,6 +118,7 @@
             android:layout_height="48dp"
             android:layout_marginStart="8dp"
             android:src="@drawable/ic_send_arrow"
+            app:tint="@color/colorTextPrimary"
             android:background="@android:color/transparent"
             android:contentDescription="Send" />
     </LinearLayout>
@@ -131,8 +131,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
+        android:background="@color/colorChatInputArea"
         android:padding="12dp"
-        android:background="#2C2C2E"
         android:gravity="center_vertical">
 
     <TextView
@@ -140,7 +140,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Powered by SENOPATI AI"
-        android:textColor="@color/white"
+        android:textColor="@color/colorTextPrimary"
         android:layout_gravity="center"
         android:textSize="12sp" />
 

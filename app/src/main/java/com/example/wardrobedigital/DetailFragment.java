@@ -25,6 +25,8 @@ import androidx.navigation.Navigation;
 import com.bumptech.glide.Glide;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+// TAMBAHKAN: Impor kelas FloatingActionButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
@@ -62,6 +64,7 @@ public class DetailFragment extends Fragment {
             }
         }
 
+        // --- Inisialisasi View yang sudah ada ---
         ImageView detailImage = view.findViewById(R.id.detail_image);
         TextView detailCategory = view.findViewById(R.id.detail_category);
         TextView detailDescription = view.findViewById(R.id.detail_description);
@@ -92,6 +95,21 @@ public class DetailFragment extends Fragment {
             }
             detailDescription.setText(descriptionBuilder.toString());
         }
+
+        // TAMBAHKAN: Hubungkan FAB dan atur OnClickListener
+        FloatingActionButton fabEdit = view.findViewById(R.id.fab_edit);
+        FloatingActionButton fabDelete = view.findViewById(R.id.fab_delete);
+
+        // Listener untuk tombol edit
+        fabEdit.setOnClickListener(v -> {
+            showEditItemDialog(); // Memanggil dialog edit yang sudah ada
+        });
+
+        // Listener untuk tombol hapus
+        fabDelete.setOnClickListener(v -> {
+            NavController navController = Navigation.findNavController(v);
+            showDeleteConfirmationDialog(navController); // Memanggil dialog konfirmasi hapus
+        });
     }
 
     private void updateDetailUI() {
@@ -118,9 +136,19 @@ public class DetailFragment extends Fragment {
         detailDescription.setText(desc.toString());
     }
 
+    // HAPUS/UBAH: Sembunyikan item menu yang tidak lagi digunakan
     @Override
     public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
         inflater.inflate(R.menu.detail_menu, menu);
+        // Sembunyikan item edit dan delete dari ActionBar
+        MenuItem editItem = menu.findItem(R.id.action_edit);
+        if (editItem != null) {
+            editItem.setVisible(false);
+        }
+        MenuItem deleteItem = menu.findItem(R.id.action_delete);
+        if (deleteItem != null) {
+            deleteItem.setVisible(false);
+        }
         super.onCreateOptionsMenu(menu, inflater);
     }
 
@@ -332,6 +360,7 @@ public class DetailFragment extends Fragment {
         }
     }
 
+    // HAPUS/UBAH: Hapus logika untuk item menu yang sudah dipindahkan ke FAB
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         NavController navController = Navigation.findNavController(requireView());
@@ -340,13 +369,10 @@ public class DetailFragment extends Fragment {
         if (itemId == android.R.id.home) {
             navController.navigateUp();
             return true;
-        } else if (itemId == R.id.action_delete) {
-            showDeleteConfirmationDialog(navController);
-            return true;
-        } else if (itemId == R.id.action_edit) {
-            showEditItemDialog();
-            return true;
         }
+        // Logika untuk R.id.action_delete dan R.id.action_edit sudah tidak diperlukan di sini
+        // else if (itemId == R.id.action_delete) { ... }
+        // else if (itemId == R.id.action_edit) { ... }
 
         return super.onOptionsItemSelected(item);
     }

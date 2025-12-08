@@ -7,6 +7,7 @@
     android:clickable="true"
     android:focusable="true"
     android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@color/colorCard"
     app:cardCornerRadius="16dp"
     app:cardElevation="4dp">
 
@@ -20,8 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:contentDescription="Wardrobe Item"
-            android:background="#3C3C3C"/>
+            android:contentDescription="Wardrobe Item"/>
 
         <!-- Category Label (Top Left) -->
         <TextView
@@ -30,13 +30,13 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top|start"
             android:layout_margin="8dp"
-            android:background="#66000000"
+            android:background="@color/colorImageScrim"
             android:paddingStart="8dp"
             android:paddingTop="4dp"
             android:paddingEnd="8dp"
             android:paddingBottom="4dp"
             android:text="Category"
-            android:textColor="@android:color/white"
+            android:textColor="@color/colorTextOnImage"
             android:textSize="12sp" />
 
     </FrameLayout>
