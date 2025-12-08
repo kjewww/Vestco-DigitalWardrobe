@@ -1,5 +1,6 @@
 package com.example.wardrobedigital;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -36,4 +37,10 @@ public interface ClothingDao {
 
     @Query("SELECT * FROM clothing_items WHERE id = :id LIMIT 1")
     ClothingItemEntity getById(int id);
+
+    // Di dalam interface ClothingDao
+
+    @Query("SELECT * FROM clothing_items ORDER BY id DESC LIMIT 10")
+    LiveData<List<ClothingItemEntity>> getRecentItems();
+
 }

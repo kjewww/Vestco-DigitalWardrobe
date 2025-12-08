@@ -13,85 +13,13 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Today's Inspiration"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+        <!-- BAGIAN "TODAY'S INSPIRATION" SUDAH DIHAPUS DARI SINI -->
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="8dp"
-            app:cardBackgroundColor="@color/colorCard"
-            app:cardCornerRadius="16dp">
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageView
-                    android:id="@+id/iv_inspiration"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/placeholder_image"
-                    android:contentDescription="Inspirasi hari ini"/>
-
-                <!-- Scrim (Overlay Gradient) -->
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/gradient_scrim" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom|start"
-                    android:layout_margin="16dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Curated Inspiration"
-                        android:textColor="@android:color/white"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Chic Autumn Layers"
-                        android:textColor="@android:color/white"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </FrameLayout>
-        </androidx.cardview.widget.CardView>
+        <!-- BAGIAN "RECENT LOOKS" SUDAH DIHAPUS DARI SINI -->
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Recent Looks"
-            android:textColor="@color/colorTextPrimary"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_recent_looks"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:orientation="horizontal"
-            tools:listitem="@layout/item_recent_look" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
             android:text="Quick Actions"
             android:textColor="@color/colorTextPrimary"
             android:textSize="20sp"
