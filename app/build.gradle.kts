@@ -1,3 +1,11 @@
+import java.util.Properties
+
+val localProperties = Properties()
+val localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.inputStream().use { localProperties.load(it) }
+}
+
 plugins {
     alias(libs.plugins.android.application)
     id("androidx.navigation.safeargs")
@@ -14,6 +22,15 @@ android {
         versionCode = 1
         versionName = "1.0"
 
+        buildConfigField("String", "SENOPATI_BASE_URL", "\"https://senopati.its.ac.id/senopati-lokal-dev/\"")
+        buildConfigField("String", "SENOPATI_BASE_URL_AKA", "\"https://senopati-api.vercel.app/\"")
+        buildConfigField("String", "REMOVEBG_BASE_URL", "\"https://api.remove.bg/v1.0/\"")
+
+        // Gunakan objek 'localProperties' yang sudah didefinisikan
+        val removeBgApiKey = localProperties.getProperty("REMOVE_BG_API_KEY") ?: ""
+        buildConfigField("String", "REMOVEBG_API_KEY", "\"$removeBgApiKey\"")
+        buildConfigField("boolean", "ENABLE_LOGS", "true")
+
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         javaCompileOptions {
@@ -21,6 +38,10 @@ android {
                 arguments += mapOf("room.schemaLocation" to "$projectDir/schemas")
             }
         }
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {

@@ -48,6 +48,9 @@ public class WardrobeFragment extends Fragment {
     private WardrobeAdapter adapter;
     private final ArrayList<ClothingItem> clothingItems = new ArrayList<>();
     private ChipGroup chipGroup;
+    private static final String REMOVE_BG_API = BuildConfig.REMOVEBG_API_KEY;
+
+
 
     // ✅ Permission launcher modern
     private final ActivityResultLauncher<String> permissionLauncher =
@@ -205,6 +208,7 @@ public class WardrobeFragment extends Fragment {
         final TextInputEditText etNotes = dialogView.findViewById(R.id.et_notes);
         final RadioGroup rgSubCategory = dialogView.findViewById(R.id.rg_subcategory);
         final TextInputEditText etName = dialogView.findViewById(R.id.et_name);
+        final android.widget.CheckBox cbRemoveBackground = dialogView.findViewById(R.id.cb_remove_background);
 
         rgCategory.setOnCheckedChangeListener((group, checkedId) -> {
             RadioButton selected = dialogView.findViewById(checkedId);
@@ -244,19 +248,13 @@ public class WardrobeFragment extends Fragment {
                     String notes = etNotes.getText() != null ? etNotes.getText().toString() : "";
 
                     List<String> weather = new ArrayList<>();
-                    for (int i = 0; i < cgWeather.getChildCount(); i++) {
-                        Chip chip = (Chip) cgWeather.getChildAt(i);
-                        if (chip.isChecked()) {
-                            weather.add(chip.getText().toString());
-                        }
+                    for (int chipId : cgWeather.getCheckedChipIds()) {
+                        weather.add(((Chip) dialogView.findViewById(chipId)).getText().toString());
                     }
 
                     List<String> colors = new ArrayList<>();
-                    for (int i = 0; i < cgColors.getChildCount(); i++) {
-                        Chip chip = (Chip) cgColors.getChildAt(i);
-                        if (chip.isChecked()) {
-                            colors.add(chip.getText().toString());
-                        }
+                    for (int chipId : cgColors.getCheckedChipIds()) {
+                        colors.add(((Chip) dialogView.findViewById(chipId)).getText().toString());
                     }
 
                     String name = etName.getText() != null ? etName.getText().toString().trim() : "";
@@ -266,7 +264,14 @@ public class WardrobeFragment extends Fragment {
                         return;
                     }
 
-                    removeBackgroundAndSave(imageUri, category, weather, pattern, colors, notes, name);
+                    // ✅ Check apakah user mau remove background atau tidak
+                    boolean shouldRemoveBackground = cbRemoveBackground.isChecked();
+
+                    if (shouldRemoveBackground) {
+                        removeBackgroundAndSave(imageUri, category, weather, pattern, colors, notes, name);
+                    } else {
+                        saveDirectlyWithoutRemovingBackground(imageUri, category, weather, pattern, colors, notes, name);
+                    }
                 })
                 .setNegativeButton("Batal", (dialog, id) -> dialog.cancel());
 
@@ -313,7 +318,7 @@ public class WardrobeFragment extends Fragment {
 
         RemoveBgService service = ApiClient.getClient().create(RemoveBgService.class);
 
-        Call<ResponseBody> call = service.removeBackground(body, "uLqwMG8CMJH6jURdnzFiJAaw");
+        Call<ResponseBody> call = service.removeBackground(body, REMOVE_BG_API);
         call.enqueue(new retrofit2.Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
@@ -360,5 +365,46 @@ public class WardrobeFragment extends Fragment {
                 Toast.makeText(getContext(), "Koneksi gagal: " + t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    /**
+     * Simpan gambar langsung tanpa remove background
+     */
+    private void saveDirectlyWithoutRemovingBackground(Uri imageUri, String category, List<String> weather,
+                                                       String pattern, List<String> colors, String notes, String name) {
+
+        ProgressDialog progressDialog = new ProgressDialog(requireContext());
+        progressDialog.setMessage("Menyimpan gambar...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        // Langsung simpan ke database tanpa processing
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+            try {
+                AppDatabase db = AppDatabase.getInstance(requireContext());
+                ClothingItemEntity entity = new ClothingItemEntity(
+                        imageUri.toString(),
+                        category,
+                        String.join(",", weather),
+                        pattern,
+                        String.join(",", colors),
+                        notes,
+                        name
+                );
+
+                long newId = db.clothingDao().insertAndReturnId(entity);
+
+                ClothingItem newItem = new ClothingItem((int) newId, imageUri, category, weather, pattern, colors, notes, name);
+                clothingItems.add(newItem);
+                adapter.notifyDataSetChanged();
+
+                progressDialog.dismiss();
+                Toast.makeText(getContext(), "Gambar disimpan!", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                progressDialog.dismiss();
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Gagal menyimpan: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }, 500); // Small delay untuk smooth UX
     }
 }

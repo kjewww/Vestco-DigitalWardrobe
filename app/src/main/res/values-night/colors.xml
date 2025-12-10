@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Palette Warna Mode Gelap -->
+    <color name="colorAppBackground">#000000</color> <!-- Diubah menjadi hitam pekat -->
+    <color name="colorNavbar">#1C1B1F</color>
+    <color name="colorCard">#3C3C3C</color>
+    <color name="colorEditTextBackground">#4A4A4C</color>
+    <color name="colorTextPrimary">#FFFFFF</color>
+    <color name="colorTextSecondary">#B0B0B0</color>
+
+    <!-- Warna Chat -->
+    <color name="colorChatBubbleUser">#004B14</color>
+    <color name="colorChatBubbleAi">#3C3C3C</color>
+    <color name="colorChatInputArea">#3C3C3C</color>
+
+    <!-- Warna Bottom Nav -->
+    <color name="bottomNavIndicatorColor">#4D4D4D</color>
+    <color name="bottomNavItemColor">#FFFFFF</color>
+
+    <!-- Warna untuk teks di atas gambar -->
+    <color name="colorImageScrim">#99000000</color> <!-- Semi-transparent black -->
+    <color name="colorTextOnImage">#FFFFFF</color>   <!-- White -->
+</resources>

@@ -3,4 +3,5 @@ plugins {
     alias(libs.plugins.android.application) apply false
     id("androidx.navigation.safeargs.kotlin") version "2.7.7" apply false
     id("androidx.navigation.safeargs") version "2.7.7" apply false
+    id("co.uzzu.dotenv.gradle") version "4.0.0"
 }
