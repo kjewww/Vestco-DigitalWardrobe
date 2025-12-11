@@ -41,6 +41,7 @@ import okhttp3.ResponseBody;
 import retrofit2.Call;
 
 public class HomeFragment extends Fragment {
+    private static final String REMOVE_BG_API = BuildConfig.REMOVEBG_API_KEY;
 
     private final ActivityResultLauncher<Intent> galleryLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
@@ -108,6 +109,7 @@ public class HomeFragment extends Fragment {
         final TextInputEditText etNotes = dialogView.findViewById(R.id.et_notes);
         final RadioGroup rgSubCategory = dialogView.findViewById(R.id.rg_subcategory);
         final TextInputEditText etName = dialogView.findViewById(R.id.et_name);
+        final android.widget.CheckBox cbRemoveBackground = dialogView.findViewById(R.id.cb_remove_background);
 
         rgCategory.setOnCheckedChangeListener((group, checkedId) -> {
             RadioButton selected = dialogView.findViewById(checkedId);
@@ -163,7 +165,16 @@ public class HomeFragment extends Fragment {
                         }
                     }
 
-                    removeBackgroundAndSave(imageUri, category, weather, pattern, colors, notes, name);
+                    boolean shouldRemoveBackground = cbRemoveBackground.isChecked();
+
+                    if (shouldRemoveBackground) {
+                        // Panggil metode yang sudah ada dengan API Key yang benar
+                        removeBackgroundAndSave(imageUri, category, weather, pattern, colors, notes, name);
+                    } else {
+                        // Panggil metode baru yang akan kita buat
+                        saveDirectlyWithoutRemovingBackground(imageUri, category, weather, pattern, colors, notes, name);
+                    }
+//                    removeBackgroundAndSave(imageUri, category, weather, pattern, colors, notes, name);
                 })
                 .setNegativeButton("Batal", (dialog, id) -> dialog.cancel());
 
@@ -210,7 +221,7 @@ public class HomeFragment extends Fragment {
 
         RemoveBgService service = ApiClient.getClient().create(RemoveBgService.class);
 
-        Call<ResponseBody> call = service.removeBackground(body, "uLqwMG8CMJH6jURdnzFiJAaw");
+        Call<ResponseBody> call = service.removeBackground(body, REMOVE_BG_API); // <-- Perubahan di sini
         call.enqueue(new retrofit2.Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, retrofit2.Response<ResponseBody> response) {
@@ -255,4 +266,42 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+    /**
+     * Simpan gambar langsung ke database tanpa menghapus background.
+     */
+    private void saveDirectlyWithoutRemovingBackground(Uri imageUri, String category, List<String> weather,
+                                                       String pattern, List<String> colors, String notes, String name) {
+
+        ProgressDialog progressDialog = new ProgressDialog(requireContext());
+        progressDialog.setMessage("Menyimpan item...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+
+        // Menggunakan Handler untuk memberikan sedikit jeda agar UX terasa lebih mulus
+        new android.os.Handler(android.os.Looper.getMainLooper()).postDelayed(() -> {
+            try {
+                AppDatabase db = AppDatabase.getInstance(requireContext());
+                ClothingItemEntity entity = new ClothingItemEntity(
+                        imageUri.toString(), // Simpan URI asli
+                        category,
+                        String.join(",", weather),
+                        pattern,
+                        String.join(",", colors),
+                        notes,
+                        name
+                );
+
+                db.clothingDao().insert(entity); // Cukup insert saja
+
+                progressDialog.dismiss();
+                Toast.makeText(getContext(), "Item berhasil disimpan!", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                progressDialog.dismiss();
+                e.printStackTrace();
+                Toast.makeText(getContext(), "Gagal menyimpan item: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }, 500); // Jeda 0.5 detik
+    }
+
 }

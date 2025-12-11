@@ -64,17 +64,36 @@ public class WardrobeFragment extends Fragment {
             });
 
     // ✅ Modern ActivityResult for gallery
+//    private final ActivityResultLauncher<Intent> galleryLauncher =
+//            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+//                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+//                    Uri selectedImageUri = result.getData().getData();
+//                    if (selectedImageUri != null) {
+//                        final int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION;
+//                        requireContext().getContentResolver().takePersistableUriPermission(selectedImageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                        showAddItemDetailsDialog(selectedImageUri);
+//                    }
+//                }
+//            });
+
+    // WardrobeFragment.java
+
     private final ActivityResultLauncher<Intent> galleryLauncher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-                    Uri selectedImageUri = result.getData().getData();
-                    if (selectedImageUri != null) {
-                        final int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_PERSISTABLE_URI_PERMISSION;
-                        requireContext().getContentResolver().takePersistableUriPermission(selectedImageUri, Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                        showAddItemDetailsDialog(selectedImageUri);
+                    Uri imageUri = result.getData().getData();
+                    if (imageUri != null) {
+                        // Ambil izin akses persisten untuk URI
+                        final int takeFlags = Intent.FLAG_GRANT_READ_URI_PERMISSION;
+                        requireContext().getContentResolver().takePersistableUriPermission(imageUri, takeFlags);
+
+                        // ✅ SELALU tampilkan dialog setelah gambar dipilih.
+                        // Di sinilah pengguna bisa mengisi detail dan memilih untuk hapus background.
+                        showAddItemDetailsDialog(imageUri);
                     }
                 }
             });
+
 
     @Nullable
     @Override
@@ -92,12 +111,9 @@ public class WardrobeFragment extends Fragment {
 
         // ✅ Setup Add Item Card
         CardView addItemCard = view.findViewById(R.id.card_add_item);
-        CardView addItemCardHome = view.findViewById(R.id.card_add_item_home);
+//        CardView addItemCardHome = view.findViewById(R.id.card_add_item_home);
         if (addItemCard != null) {
             addItemCard.setOnClickListener(v -> openGallery());
-        }
-        if (addItemCardHome != null) {
-            addItemCardHome.setOnClickListener(v -> openGallery());
         }
 
         // ✅ Setup RecyclerView
@@ -120,8 +136,6 @@ public class WardrobeFragment extends Fragment {
         if (isAdded() && getView() != null) {
             openGallery();
         } else {
-            // Jika view belum siap, kita bisa tunda sedikit atau log pesan.
-            // Untuk sekarang, kita tampilkan Toast.
             Toast.makeText(getContext(), "Harap tunggu sebentar...", Toast.LENGTH_SHORT).show();
         }
     }
