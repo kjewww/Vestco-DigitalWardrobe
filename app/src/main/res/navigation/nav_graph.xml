@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.wardrobedigital.HomeFragment"
+        android:name="com.vestco.wardrobedigital.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/navigation_wardrobe"
-        android:name="com.example.wardrobedigital.WardrobeFragment"
+        android:name="com.vestco.wardrobedigital.WardrobeFragment"
         android:label="fragment_wardrobe"
         tools:layout="@layout/fragment_wardrobe" >
         <action
@@ -27,24 +27,24 @@
 
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.example.wardrobedigital.DetailFragment"
+        android:name="com.vestco.wardrobedigital.DetailFragment"
         android:label="fragment_detail"
         tools:layout="@layout/fragment_detail" >
         <argument
             android:name="clothingItem"
-            app:argType="com.example.wardrobedigital.ClothingItem" />
+            app:argType="com.vestco.wardrobedigital.ClothingItem" />
     </fragment>
 
     <fragment
         android:id="@+id/imageFullscreenFragment"
-        android:name="com.example.wardrobedigital.ImageFullscreenFragment"
+        android:name="com.vestco.wardrobedigital.ImageFullscreenFragment"
         android:label="Fullscreen Image"
         tools:layout="@layout/fragment_image_fullscreen" />
 
     <!-- ✅ OUTFIT FRAGMENT -->
     <fragment
         android:id="@+id/nav_outfit"
-        android:name="com.example.wardrobedigital.OutfitFragment"
+        android:name="com.vestco.wardrobedigital.OutfitFragment"
         android:label="fragment_outfit"
         tools:layout="@layout/fragment_outfit" >
         <!-- ✅ Action ke CreateOutfitFragment -->
@@ -60,19 +60,19 @@
     <!-- ✅ CREATE OUTFIT FRAGMENT -->
     <fragment
         android:id="@+id/createOutfitFragment"
-        android:name="com.example.wardrobedigital.CreateOutfitFragment"
+        android:name="com.vestco.wardrobedigital.CreateOutfitFragment"
         android:label="Buat Outfit"
         tools:layout="@layout/fragment_create_outfit" />
 
     <!-- ✅ OUTFIT DETAIL FRAGMENT -->
     <fragment
         android:id="@+id/outfitDetailFragment"
-        android:name="com.example.wardrobedigital.OutfitDetailFragment"
+        android:name="com.vestco.wardrobedigital.OutfitDetailFragment"
         android:label="Detail Outfit"
         tools:layout="@layout/fragment_outfit_detail" >
         <argument
             android:name="outfit"
-            app:argType="com.example.wardrobedigital.Outfit" />
+            app:argType="com.vestco.wardrobedigital.Outfit" />
         <!-- ✅ Bisa navigasi ke DetailFragment (item pakaian) -->
         <action
             android:id="@+id/action_outfitDetailFragment_to_detailFragment"
@@ -81,7 +81,7 @@
 
     <fragment
         android:id="@+id/navigation_chat"
-        android:name="com.example.wardrobedigital.ChatFragment"
+        android:name="com.vestco.wardrobedigital.ChatFragment"
         android:label="fragment_chat"
         tools:layout="@layout/fragment_chat" />
 

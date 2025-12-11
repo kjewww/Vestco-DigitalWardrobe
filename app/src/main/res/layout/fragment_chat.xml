@@ -16,6 +16,19 @@
         android:padding="8dp"
         android:clipToPadding="false" />
 
+    <ImageButton
+        android:id="@+id/btn_delete_chat"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Hapus riwayat chat"
+        android:src="@android:drawable/ic_menu_delete"
+        app:tint="@color/colorTextSecondary" />
+
     <!-- Progress Bar -->
     <ProgressBar
         android:id="@+id/progress_bar"

@@ -12,7 +12,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.wardrobedigital"
+    namespace = "com.vestco.wardrobedigital"
     compileSdk = 36
 
     defaultConfig {
