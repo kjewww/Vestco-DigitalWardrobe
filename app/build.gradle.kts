@@ -16,7 +16,7 @@ android {
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.example.wardrobedigital"
+        applicationId = "com.vesto.wardrobedigital"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

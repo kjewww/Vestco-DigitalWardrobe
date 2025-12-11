@@ -24,6 +24,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.vestco.wardrobedigital.R;
 import com.vestco.wardrobedigital.api.ApiClient;
 import com.vestco.wardrobedigital.api.RemoveBgService;
 import com.google.android.material.chip.Chip;
@@ -91,8 +92,12 @@ public class WardrobeFragment extends Fragment {
 
         // ✅ Setup Add Item Card
         CardView addItemCard = view.findViewById(R.id.card_add_item);
+        CardView addItemCardHome = view.findViewById(R.id.card_add_item_home);
         if (addItemCard != null) {
             addItemCard.setOnClickListener(v -> openGallery());
+        }
+        if (addItemCardHome != null) {
+            addItemCardHome.setOnClickListener(v -> openGallery());
         }
 
         // ✅ Setup RecyclerView
